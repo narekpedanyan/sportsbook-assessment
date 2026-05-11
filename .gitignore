@@ -46,6 +46,8 @@ next-env.d.ts
 .aider*
 *.aider
 .continue
+AGENTS.md
+CLAUDE.md
 
 # IDE
 .idea/
