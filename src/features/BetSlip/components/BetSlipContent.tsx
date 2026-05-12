@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useMemo, useState, useCallback } from 'react'
 import { useForm, FormProvider, useWatch } from 'react-hook-form'
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema'
