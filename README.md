@@ -30,6 +30,8 @@ A production-quality live sportsbook application built with Next.js App Router. 
 
 ```bash
 pnpm install
+pnpm playwright install
+cp .env.example .env.local
 pnpm dev
 ```
 
