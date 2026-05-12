@@ -17,7 +17,7 @@ keeps those pages fresh by regenerating them in the background using the revalid
 
 ISR works in this order:
 
-User visits the page after revalidate seconds have passed
-They immediately get the old cached version — no waiting
-Next.js triggers a background regeneration
-The next visitor gets the freshly built version
+User visits the page after revalidate seconds have passed ->
+They immediately get the old cached version — no waiting ->
+Next.js triggers a background regeneration ->
+The next visitor gets the freshly built version:
