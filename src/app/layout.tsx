@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react'
 import { Geist } from 'next/font/google'
 
 import BetSlip from '@/features/BetSlip'
@@ -13,6 +12,7 @@ import { ThemeProvider } from '@/providers/ThemeProvider'
 
 import { getAppConfig } from '@/lib/api/config'
 
+import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 
 import './globals.css'
