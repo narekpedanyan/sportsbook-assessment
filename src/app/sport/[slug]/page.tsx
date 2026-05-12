@@ -4,6 +4,7 @@ import { ChevronLeft } from 'lucide-react'
 
 import SportEvents from '@/components/core/SportEvents'
 import { getSportEvents } from '@/lib/api/events'
+import { EVENT_STATUS } from '@/lib/constants'
 
 export default async function SportPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -14,7 +15,7 @@ export default async function SportPage({ params }: { params: Promise<{ slug: st
   const { sport, groups } = data
   const totalEvents = groups.reduce((sum, g) => sum + g.events.length, 0)
   const liveCount = groups.reduce(
-    (sum, g) => sum + g.events.filter((e) => e.status === 'live').length,
+    (sum, g) => sum + g.events.filter((e) => e.status === EVENT_STATUS.LIVE).length,
     0,
   )
 

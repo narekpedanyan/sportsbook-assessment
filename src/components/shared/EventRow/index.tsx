@@ -5,13 +5,14 @@ import { useShallow } from 'zustand/react/shallow'
 import MatchClock from '@/components/shared/MatchClock'
 import OddsButton from '@/components/shared/OddsButton'
 import { cn } from '@/lib/utils'
+import { EVENT_STATUS, MARKET_TYPE } from '@/lib/constants'
 import { useBetSlipStore } from '@/stores/betSlipStore'
 import type { Event, Market } from '@/types'
 
 function getMainMarket(markets: Market[]): Market | undefined {
   return (
-    markets.find((m) => m.type === '1X2') ||
-    markets.find((m) => m.type === 'MONEY_LINE') ||
+    markets.find((m) => m.type === MARKET_TYPE.ONE_X_TWO) ||
+    markets.find((m) => m.type === MARKET_TYPE.MONEY_LINE) ||
     markets[0]
   )
 }
@@ -67,11 +68,11 @@ const EventRow = memo(function EventRow({ event }: EventRowProps) {
     <div
       className={cn(
         'border-border bg-card rounded-xl border p-3 transition-colors',
-        status === 'live' && 'border-green-500/20',
+        status === EVENT_STATUS.LIVE && 'border-green-500/20',
       )}
     >
       <div className="mb-2 flex items-center justify-between gap-2">
-        {status === 'live' && matchClock ? (
+        {status === EVENT_STATUS.LIVE && matchClock ? (
           <MatchClock clock={matchClock} />
         ) : (
           <span className="text-muted-foreground text-xs">{formatStartTime(startTime)}</span>

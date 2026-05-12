@@ -1,4 +1,4 @@
-import { BET_TYPE_IDS } from '@/features/BetSlip/constants'
+import { BET_TYPE_IDS } from './constants'
 
 export type StakeForm = { stake: string }
 

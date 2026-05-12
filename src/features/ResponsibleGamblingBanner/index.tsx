@@ -3,7 +3,7 @@
 import { memo, useEffect, useState } from 'react'
 import { X, ShieldCheck } from 'lucide-react'
 
-import type { ResponsibleGambling } from '@/types'
+import type { ResponsibleGambling } from './types'
 
 import { DISMISSED_KEY } from './constants'
 import SessionTimer from './components/SessionTimer'

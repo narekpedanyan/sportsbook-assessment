@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import { BetType } from '../types'
+import type { BetType } from '../types'
 import { BET_TYPE_IDS } from '../constants'
 
 interface BetSlipSelectionDetailsProps {

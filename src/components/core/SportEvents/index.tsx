@@ -3,7 +3,11 @@
 import { useQuery } from '@tanstack/react-query'
 import EventRow from '@/components/shared/EventRow'
 
+import { EVENT_STATUS } from '@/lib/constants'
+
 import type { SportEventsResponse } from '@/types'
+
+const pollingInterval = 2000
 
 interface SportEventsProps {
   slug: string
@@ -23,16 +27,16 @@ const SportEvents = ({ slug, initialData }: SportEventsProps) => {
     initialData,
     refetchInterval: (query) => {
       const hasLive = query.state.data?.groups.some((g) =>
-        g.events.some((e) => e.status === 'live'),
+        g.events.some((e) => e.status === EVENT_STATUS.LIVE),
       )
-      return hasLive ? 2000 : false
+      return hasLive ? pollingInterval : false
     },
   })
 
   return (
     <div className="space-y-8">
       {data.groups.map(({ competition, events }) => {
-        const liveCount = events.filter((e) => e.status === 'live').length
+        const liveCount = events.filter((e) => e.status === EVENT_STATUS.LIVE).length
 
         return (
           <section key={competition.id}>

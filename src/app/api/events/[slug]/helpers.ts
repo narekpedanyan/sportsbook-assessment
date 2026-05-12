@@ -1,5 +1,5 @@
 import { oddsSimulation } from '@/mock'
-import { ODDS_TREND } from '@/lib/constants'
+import { ODDS_TREND, EVENT_STATUS } from '@/lib/constants'
 
 import type { Event, EventsGroup, OddsTrend } from '@/types'
 
@@ -37,7 +37,7 @@ export const applyLiveOddsSimulation = (events: Event[]): Event[] => {
   const { maxOddsChange } = oddsSimulation
 
   return events.map((event) => {
-    if (event.status !== 'live') return event
+    if (event.status !== EVENT_STATUS.LIVE) return event
 
     return {
       ...event,
@@ -86,7 +86,7 @@ export const sortGroupEventsLiveFirst = (groups: EventsGroup[]): EventsGroup[] =
   groups.map((group) => ({
     ...group,
     events: [
-      ...group.events.filter((e) => e.status === 'live'),
-      ...group.events.filter((e) => e.status === 'upcoming'),
+      ...group.events.filter((e) => e.status === EVENT_STATUS.LIVE),
+      ...group.events.filter((e) => e.status === EVENT_STATUS.UPCOMING),
     ],
   }))

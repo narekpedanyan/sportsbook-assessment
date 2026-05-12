@@ -2,12 +2,9 @@ import { NextResponse } from 'next/server'
 
 import { mockData } from '@/mock'
 
-import type { AppConfig } from '@/types'
-
 export async function GET() {
-  const config: AppConfig = {
+  return NextResponse.json({
     betSlipConfig: mockData.betSlipConfig,
     responsibleGambling: mockData.responsibleGambling,
-  }
-  return NextResponse.json(config)
+  })
 }

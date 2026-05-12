@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { useBetSlipStore } from '@/stores/betSlipStore'
 import BetSlipCard from '@/components/shared/BetSlipCard'
 
-import type { BetType, StakeForm } from '@/features/BetSlip/types'
+import type { BetType, StakeForm } from '../types'
 import type { ReactNode } from 'react'
 
 import { createStakeSchema, getPlaceBetLabel } from '../helpers'

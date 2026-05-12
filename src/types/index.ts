@@ -1,5 +1,4 @@
-import { BetSlipConfig } from '@/features/BetSlip/types'
-import { ODDS_TREND } from '@/lib/constants'
+import { ODDS_TREND, EVENT_STATUS, MARKET_TYPE } from '@/lib/constants'
 
 export interface Sport {
   id: string
@@ -42,7 +41,7 @@ export interface Selection {
   trend: OddsTrend
 }
 
-export type MarketType = '1X2' | 'MONEY_LINE' | 'OVER_UNDER' | 'SPREAD' | 'YES_NO'
+export type MarketType = (typeof MARKET_TYPE)[keyof typeof MARKET_TYPE]
 
 export interface Market {
   id: string
@@ -59,7 +58,7 @@ export type Team = {
   logo: string
 }
 
-export type Status = 'live' | 'upcoming'
+export type Status = (typeof EVENT_STATUS)[keyof typeof EVENT_STATUS]
 
 export interface Event {
   id: string
@@ -72,49 +71,6 @@ export interface Event {
   matchClock: MatchClock | null
   startTime: string
   markets: Market[]
-}
-
-export interface ResponsibleGambling {
-  sessionTimerEnabled: boolean
-  sessionTimerIntervalMinutes: number
-  depositLimits: {
-    daily: { min: number; max: number }
-    weekly: { min: number; max: number }
-    monthly: { min: number; max: number }
-  }
-  selfExclusionOptions: { id: string; label: string }[]
-  messages: {
-    banner: string
-    sessionReminder: string
-    depositLimitReached: string
-  }
-  helplineUrl: string
-  helplinePhone: string
-  minimumAge: number
-}
-
-export interface AppConfig {
-  betSlipConfig: BetSlipConfig
-  responsibleGambling: ResponsibleGambling
-}
-
-export interface OddsSimulation {
-  updateIntervalMs: {
-    live: { min: number; max: number }
-    upcoming: { min: number; max: number }
-  }
-  maxOddsChange: number
-  suspensionProbability: number
-  suspensionDurationMs: { min: number; max: number }
-}
-
-export interface SportsbookData {
-  sports: Sport[]
-  competitions: Competition[]
-  events: Event[]
-  betSlipConfig: BetSlipConfig
-  responsibleGambling: ResponsibleGambling
-  oddsSimulation: OddsSimulation
 }
 
 export interface EventsGroup {

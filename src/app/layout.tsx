@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { Geist } from 'next/font/google'
 
 import BetSlip from '@/features/BetSlip'

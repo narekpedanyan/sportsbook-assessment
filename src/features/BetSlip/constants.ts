@@ -1,4 +1,4 @@
-import { BetType } from '@/features/BetSlip/types'
+import type { BetType } from './types'
 
 export const BET_SLIP_LABELS = {
   betSlip: 'Bet Slip',
