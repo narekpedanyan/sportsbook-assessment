@@ -5,39 +5,40 @@ import { Lock } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-import type { Selection } from '@/types'
-
 interface OddsButtonProps {
-  selection: Selection
+  id: string
+  odds: number
+  label: string
   suspended: boolean
   selected?: boolean
   onClick?: () => void
 }
 
 const OddsButton = memo(
-  function OddsButton({ selection, suspended, selected = false, onClick }: OddsButtonProps) {
-    const prevOdds = useRef(selection.odds)
+  ({ id: _id, odds, label, suspended, selected = false, onClick }: OddsButtonProps) => {
+    const prevOdds = useRef(odds)
     const [flash, setFlash] = useState<'shorten' | 'drift' | null>(null)
 
     useEffect(() => {
       if (suspended || selected) {
-        prevOdds.current = selection.odds
+        prevOdds.current = odds
         setFlash(null)
         return
       }
-      if (Math.abs(selection.odds - prevOdds.current) < 0.001) return
-      const direction = selection.odds < prevOdds.current ? 'shorten' : 'drift'
-      prevOdds.current = selection.odds
+      if (Math.abs(odds - prevOdds.current) < 0.001) return
+      const direction = odds < prevOdds.current ? 'shorten' : 'drift'
+      prevOdds.current = odds
       setFlash(direction)
       const timeoutId = setTimeout(() => setFlash(null), 600)
       return () => {
         clearTimeout(timeoutId)
         setFlash(null)
       }
-    }, [selection.odds, suspended, selected])
+    }, [odds, suspended, selected])
 
     return (
       <button
+        type="button"
         disabled={suspended}
         onClick={onClick}
         aria-pressed={suspended ? undefined : selected}
@@ -66,10 +67,10 @@ const OddsButton = memo(
               suspended && 'invisible',
             )}
           >
-            {selection.label}
+            {label}
           </span>
           <span className={cn('text-sm leading-none font-bold', suspended && 'invisible')}>
-            {selection.odds.toFixed(2)}
+            {odds.toFixed(2)}
           </span>
           {suspended && (
             <span className="absolute inset-0 flex items-center justify-center">
@@ -81,10 +82,12 @@ const OddsButton = memo(
     )
   },
   (prev, next) =>
-    prev.selection.odds === next.selection.odds &&
-    prev.selection.id === next.selection.id &&
+    prev.id === next.id &&
+    prev.odds === next.odds &&
     prev.suspended === next.suspended &&
     prev.selected === next.selected,
 )
+
+OddsButton.displayName = 'OddsButton'
 
 export default OddsButton

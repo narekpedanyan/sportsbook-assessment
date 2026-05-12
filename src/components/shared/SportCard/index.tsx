@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Link from 'next/link'
 
 import { Card, CardContent } from '@/components/ui/card'
@@ -8,7 +9,7 @@ interface SportCardProps {
   sport: Sport
 }
 
-const SportCard = ({ sport }: SportCardProps) => {
+const SportCard = memo(({ sport }: SportCardProps) => {
   const { name, slug, icon, liveEventCount, upcomingEventCount } = sport
 
   return (
@@ -34,6 +35,8 @@ const SportCard = ({ sport }: SportCardProps) => {
       </Card>
     </Link>
   )
-}
+})
+
+SportCard.displayName = 'SportCard'
 
 export default SportCard

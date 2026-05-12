@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 import { X } from 'lucide-react'
 
-import type { BetSlipSelection } from '@/stores/betSlipStore'
+import type { BetSlipSelection } from '@/types'
 
 interface BetSlipCardProps {
   selection: BetSlipSelection
@@ -18,6 +18,7 @@ const BetSlipCard = memo(({ selection, onRemove }: BetSlipCardProps) => {
           <p className="text-muted-foreground truncate text-[11px]">{selection.marketName}</p>
         </div>
         <button
+          type="button"
           onClick={onRemove}
           aria-label="Remove selection"
           className="text-muted-foreground hover:text-foreground mt-0.5 shrink-0 cursor-pointer transition-colors"

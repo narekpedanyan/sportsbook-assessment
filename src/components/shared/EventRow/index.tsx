@@ -1,70 +1,22 @@
-'use client'
-
-import { memo, useMemo } from 'react'
-import { useShallow } from 'zustand/react/shallow'
+import { memo } from 'react'
 
 import MatchClock from '@/components/shared/MatchClock'
 import OddsButton from '@/components/shared/OddsButton'
 import { cn } from '@/lib/utils'
-import { EVENT_STATUS, MARKET_TYPE } from '@/lib/constants'
-import { useBetSlipStore } from '@/stores/betSlipStore'
+import { EVENT_STATUS } from '@/lib/constants'
+import { formatStartTime } from '@/components/core/SportEvents/helpers'
 
 import type { Event, Market } from '@/types'
 
-function getMainMarket(markets: Market[]): Market | undefined {
-  return (
-    markets.find((m) => m.type === MARKET_TYPE.ONE_X_TWO) ||
-    markets.find((m) => m.type === MARKET_TYPE.MONEY_LINE) ||
-    markets[0]
-  )
-}
-
-function formatStartTime(iso: string): string {
-  return new Intl.DateTimeFormat('en-GB', {
-    weekday: 'short',
-    day: 'numeric',
-    month: 'short',
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(new Date(iso))
-}
-
 interface EventRowProps {
   event: Event
+  mainMarket: Market | undefined
+  selectedIds: Set<string>
+  onOddsClick: (selectionId: string) => void
 }
 
-const EventRow = memo(function EventRow({ event }: EventRowProps) {
-  const { homeTeam, awayTeam, score, matchClock, status, startTime, markets } = event
-  const mainMarket = getMainMarket(markets)
-
-  const selectedIds = useBetSlipStore(useShallow((s) => s.selections.map((sel) => sel.selectionId)))
-  const addSelection = useBetSlipStore((s) => s.addSelection)
-  const removeSelection = useBetSlipStore((s) => s.removeSelection)
-
-  const selectedSet = useMemo(() => new Set(selectedIds), [selectedIds])
-
-  const eventName = `${homeTeam.name} vs ${awayTeam.name}`
-
-  function handleOddsClick(selectionId: string) {
-    if (!mainMarket) return
-    const selection = mainMarket.selections.find((s) => s.id === selectionId)
-    if (!selection) return
-
-    if (selectedSet.has(selectionId)) {
-      removeSelection(selectionId)
-    } else {
-      addSelection({
-        selectionId: selection.id,
-        selectionName: selection.name,
-        label: selection.label,
-        odds: selection.odds,
-        eventId: event.id,
-        eventName,
-        marketId: mainMarket.id,
-        marketName: mainMarket.name,
-      })
-    }
-  }
+const EventRow = memo(({ event, mainMarket, selectedIds, onOddsClick }: EventRowProps) => {
+  const { homeTeam, awayTeam, score, matchClock, status, startTime } = event
 
   return (
     <div
@@ -75,7 +27,7 @@ const EventRow = memo(function EventRow({ event }: EventRowProps) {
     >
       <div className="mb-2 flex items-center justify-between gap-2">
         {status === EVENT_STATUS.LIVE && matchClock ? (
-          <MatchClock clock={matchClock} />
+          <MatchClock minute={matchClock.minute} period={matchClock.period} isRunning={matchClock.isRunning} />
         ) : (
           <span className="text-muted-foreground text-xs">{formatStartTime(startTime)}</span>
         )}
@@ -103,10 +55,12 @@ const EventRow = memo(function EventRow({ event }: EventRowProps) {
             {mainMarket.selections.map((selection) => (
               <OddsButton
                 key={selection.id}
-                selection={selection}
+                id={selection.id}
+                odds={selection.odds}
+                label={selection.label}
                 suspended={mainMarket.suspended}
-                selected={selectedSet.has(selection.id)}
-                onClick={() => handleOddsClick(selection.id)}
+                selected={selectedIds.has(selection.id)}
+                onClick={() => onOddsClick(selection.id)}
               />
             ))}
           </div>
@@ -115,5 +69,7 @@ const EventRow = memo(function EventRow({ event }: EventRowProps) {
     </div>
   )
 })
+
+EventRow.displayName = 'EventRow'
 
 export default EventRow

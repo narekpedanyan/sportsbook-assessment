@@ -73,6 +73,17 @@ export interface Event {
   markets: Market[]
 }
 
+export interface BetSlipSelection {
+  selectionId: string
+  selectionName: string
+  label: string
+  odds: number
+  eventId: string
+  eventName: string
+  marketId: string
+  marketName: string
+}
+
 export interface EventsGroup {
   competition: Competition
   events: Event[]

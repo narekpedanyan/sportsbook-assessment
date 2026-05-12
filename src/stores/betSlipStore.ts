@@ -1,15 +1,6 @@
 import { create } from 'zustand'
 
-export interface BetSlipSelection {
-  selectionId: string
-  selectionName: string
-  label: string
-  odds: number
-  eventId: string
-  eventName: string
-  marketId: string
-  marketName: string
-}
+import type { BetSlipSelection } from '@/types'
 
 interface BetSlipStore {
   selections: BetSlipSelection[]

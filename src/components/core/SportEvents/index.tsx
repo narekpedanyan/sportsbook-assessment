@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
-import EventRow from '@/components/shared/EventRow'
+import EventRowWrapper from './EventRowWrapper'
 
 import { EVENT_STATUS } from '@/lib/constants'
 
@@ -49,7 +49,7 @@ const SportEvents = ({ slug, initialData }: SportEventsProps) => {
             </div>
             <div className="space-y-2">
               {events.map((event) => (
-                <EventRow key={event.id} event={event} />
+                <EventRowWrapper key={event.id} event={event} />
               ))}
             </div>
           </section>
