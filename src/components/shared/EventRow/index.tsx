@@ -2,11 +2,13 @@
 
 import { memo, useMemo } from 'react'
 import { useShallow } from 'zustand/react/shallow'
+
 import MatchClock from '@/components/shared/MatchClock'
 import OddsButton from '@/components/shared/OddsButton'
 import { cn } from '@/lib/utils'
 import { EVENT_STATUS, MARKET_TYPE } from '@/lib/constants'
 import { useBetSlipStore } from '@/stores/betSlipStore'
+
 import type { Event, Market } from '@/types'
 
 function getMainMarket(markets: Market[]): Market | undefined {
@@ -88,15 +90,11 @@ const EventRow = memo(function EventRow({ event }: EventRowProps) {
         <div className="flex min-w-0 flex-1 flex-col gap-1.5">
           <div className="flex items-center justify-between gap-2">
             <span className="truncate text-sm font-medium">{homeTeam.name}</span>
-            {score !== null && (
-              <span className="text-sm font-bold tabular-nums">{score.home}</span>
-            )}
+            {score !== null && <span className="text-sm font-bold tabular-nums">{score.home}</span>}
           </div>
           <div className="flex items-center justify-between gap-2">
             <span className="truncate text-sm font-medium">{awayTeam.name}</span>
-            {score !== null && (
-              <span className="text-sm font-bold tabular-nums">{score.away}</span>
-            )}
+            {score !== null && <span className="text-sm font-bold tabular-nums">{score.away}</span>}
           </div>
         </div>
 
