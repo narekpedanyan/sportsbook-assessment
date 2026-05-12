@@ -6,10 +6,15 @@ import { Lock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface OddsButtonProps {
+  /** Unique selection ID — used by the memo comparator to detect identity changes */
   id: string
+  /** Current decimal odds value — triggers flash animation on change */
   odds: number
+  /** Display label shown above the odds e.g. '1', 'X', '2', 'Over' */
   label: string
+  /** When true renders a locked state and disables interaction */
   suspended: boolean
+  /** Whether this selection is currently in the bet slip */
   selected?: boolean
   onClick?: () => void
 }

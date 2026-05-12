@@ -5,7 +5,9 @@ import { X } from 'lucide-react'
 import type { BetSlipSelection } from '@/types'
 
 interface BetSlipCardProps {
+  /** The bet slip selection to display */
   selection: BetSlipSelection
+  /** Called when the user clicks the remove button */
   onRemove: () => void
 }
 

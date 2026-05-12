@@ -3,8 +3,11 @@ import { memo } from 'react'
 import { cn } from '@/lib/utils'
 
 interface MatchClockProps {
+  /** Current match minute */
   minute: number
+  /** Period label e.g. '1H', '2H', 'HT' */
   period: string
+  /** Whether the clock is actively running — shows the pulsing live indicator */
   isRunning: boolean
   className?: string
 }

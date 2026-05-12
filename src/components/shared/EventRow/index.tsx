@@ -9,9 +9,13 @@ import { formatStartTime } from '@/components/core/SportEvents/helpers'
 import type { Event, Market } from '@/types'
 
 interface EventRowProps {
+  /** Full event object with teams, score, clock, and markets */
   event: Event
+  /** Pre-resolved primary market to display (1X2, Money Line, or first available) */
   mainMarket: Market | undefined
+  /** Set of selection IDs currently in the bet slip */
   selectedIds: Set<string>
+  /** Called with the selection ID when an odds button is clicked */
   onOddsClick: (selectionId: string) => void
 }
 

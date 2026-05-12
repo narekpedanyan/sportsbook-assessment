@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import type { Sport } from '@/types'
 
 interface SportCardProps {
+  /** Full sport object containing name, slug, icon, and event counts */
   sport: Sport
 }
 
