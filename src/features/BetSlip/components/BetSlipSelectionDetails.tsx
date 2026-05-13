@@ -52,7 +52,7 @@ const BetSlipSelectionDetails = memo(
         </div>
       </div>
     )
-  }
+  },
 )
 
 BetSlipSelectionDetails.displayName = 'BetSlipSelectionDetails'

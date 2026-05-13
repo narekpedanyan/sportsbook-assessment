@@ -33,7 +33,11 @@ const BetSlip = ({ config }: BetSlipProps) => {
 
   return (
     <>
-      <aside role="region" aria-label="Bet Slip" className="border-border sticky top-(--sticky-top,3.5rem) hidden h-[calc(100vh-var(--sticky-top,3.5rem))] w-80 shrink-0 flex-col overflow-hidden border-l lg:flex">
+      <aside
+        role="region"
+        aria-label="Bet Slip"
+        className="border-border sticky top-(--sticky-top,3.5rem) hidden h-[calc(100vh-var(--sticky-top,3.5rem))] w-80 shrink-0 flex-col overflow-hidden border-l lg:flex"
+      >
         <BetSlipContent
           minStake={minStake}
           maxStake={maxStake}

@@ -115,4 +115,3 @@ Additional speed comes from pnpm store caching between runs, parallelizing indep
 focused — one well-written critical path test is more valuable than multiple poorly thought-out ones. During intensive
 development a proper pipeline prevents junk code and potential bugs from reaching the codebase, and enforces consistency
 across the project automatically.
-

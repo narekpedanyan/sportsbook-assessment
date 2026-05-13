@@ -31,9 +31,15 @@ const EventRow = memo(({ event, mainMarket, selectedIds, onOddsClick }: EventRow
     >
       <div className="mb-2 flex items-center justify-between gap-2">
         {status === EVENT_STATUS.LIVE && matchClock ? (
-          <MatchClock minute={matchClock.minute} period={matchClock.period} isRunning={matchClock.isRunning} />
+          <MatchClock
+            minute={matchClock.minute}
+            period={matchClock.period}
+            isRunning={matchClock.isRunning}
+          />
         ) : (
-          <span className="text-muted-foreground text-xs" suppressHydrationWarning>{formatStartTime(startTime)}</span>
+          <span className="text-muted-foreground text-xs" suppressHydrationWarning>
+            {formatStartTime(startTime)}
+          </span>
         )}
         {score?.detail && (
           <span className="text-muted-foreground truncate text-right text-[11px]">

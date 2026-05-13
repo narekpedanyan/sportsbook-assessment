@@ -62,7 +62,7 @@ const PlaceBetConfirmationModal = memo(
         </AlertDialogContent>
       </AlertDialog>
     )
-  }
+  },
 )
 
 PlaceBetConfirmationModal.displayName = 'PlaceBetConfirmationModal'

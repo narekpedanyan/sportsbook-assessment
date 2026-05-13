@@ -15,7 +15,12 @@ const tickSelectionOdds = (
   const delta = (Math.random() - 0.5) * maxChange * 2
   const next = Math.max(1.01, parseFloat((current + delta).toFixed(2)))
   oddsCache.set(selectionId, next)
-  const trend: OddsTrend = next < current ? ODDS_TREND.SHORTENING : next > current ? ODDS_TREND.DRIFTING : ODDS_TREND.STABLE
+  const trend: OddsTrend =
+    next < current
+      ? ODDS_TREND.SHORTENING
+      : next > current
+        ? ODDS_TREND.DRIFTING
+        : ODDS_TREND.STABLE
   return { odds: next, previousOdds: current, trend }
 }
 

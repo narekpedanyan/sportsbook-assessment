@@ -4,15 +4,15 @@ A production-quality live sportsbook application built with Next.js App Router. 
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 16 (App Router) |
-| Language | TypeScript (strict) |
-| Styling | Tailwind CSS v4 + shadcn/ui |
-| Client State | Zustand |
-| Server State | TanStack Query |
-| Forms | React Hook Form + Zod |
-| Package Manager | pnpm |
+| Layer           | Technology                  |
+| --------------- | --------------------------- |
+| Framework       | Next.js 16 (App Router)     |
+| Language        | TypeScript (strict)         |
+| Styling         | Tailwind CSS v4 + shadcn/ui |
+| Client State    | Zustand                     |
+| Server State    | TanStack Query              |
+| Forms           | React Hook Form + Zod       |
+| Package Manager | pnpm                        |
 
 ## Features
 

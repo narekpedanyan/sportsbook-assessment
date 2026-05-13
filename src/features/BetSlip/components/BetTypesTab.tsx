@@ -25,7 +25,7 @@ const BetTypesTab = memo(({ betType, setBetType }: BetTypesTabProps) => {
               'flex-1 cursor-pointer py-1.5 capitalize transition-colors',
               isActive
                 ? 'bg-primary text-primary-foreground'
-                : 'text-muted-foreground hover:bg-muted'
+                : 'text-muted-foreground hover:bg-muted',
             )}
           >
             {type}

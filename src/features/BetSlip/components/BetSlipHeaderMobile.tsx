@@ -28,7 +28,7 @@ const BetSlipHeaderMobile = memo(
         {betSlipOpened ? <ChevronDown className="size-4" /> : <ChevronUp className="size-4" />}
       </button>
     )
-  }
+  },
 )
 
 BetSlipHeaderMobile.displayName = 'BetSlipHeaderMobile'

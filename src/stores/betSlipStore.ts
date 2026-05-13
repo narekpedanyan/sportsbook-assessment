@@ -14,8 +14,7 @@ interface BetSlipStore {
 export const useBetSlipStore = create<BetSlipStore>((set, get) => ({
   selections: [],
 
-  addSelection: (selection) =>
-    set((state) => ({ selections: [...state.selections, selection] })),
+  addSelection: (selection) => set((state) => ({ selections: [...state.selections, selection] })),
 
   removeSelection: (selectionId) =>
     set((state) => ({
@@ -24,13 +23,10 @@ export const useBetSlipStore = create<BetSlipStore>((set, get) => ({
 
   updateOdds: (selectionId, odds) =>
     set((state) => ({
-      selections: state.selections.map((s) =>
-        s.selectionId === selectionId ? { ...s, odds } : s,
-      ),
+      selections: state.selections.map((s) => (s.selectionId === selectionId ? { ...s, odds } : s)),
     })),
 
   clearSlip: () => set({ selections: [] }),
 
-  hasSelection: (selectionId) =>
-    get().selections.some((s) => s.selectionId === selectionId),
+  hasSelection: (selectionId) => get().selections.some((s) => s.selectionId === selectionId),
 }))
