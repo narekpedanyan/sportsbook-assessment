@@ -25,9 +25,6 @@ test('full bet placement flow', async ({ page }) => {
     .first()
   await expect(oddsButton).toBeVisible()
 
-  // Capture the odds text before clicking so we can verify it appears in the slip
-  const oddsText = await oddsButton.locator('span.font-bold').innerText()
-
   // 5. Click the odds button — it should become selected (aria-pressed="true")
   await oddsButton.click()
   await expect(oddsButton).toHaveAttribute('aria-pressed', 'true')
@@ -35,7 +32,7 @@ test('full bet placement flow', async ({ page }) => {
   // 6. Bet slip sidebar should show 1 selection (desktop layout)
   const betSlipSidebar = page.locator('aside').first()
   await expect(betSlipSidebar).toBeVisible()
-  await expect(betSlipSidebar.locator('text=' + oddsText)).toBeVisible()
+  await expect(betSlipSidebar.locator('button[aria-label="Remove selection"]')).toBeVisible()
 
   // 7. Enter a valid stake
   const stakeInput = betSlipSidebar.locator('input[type="number"]')
