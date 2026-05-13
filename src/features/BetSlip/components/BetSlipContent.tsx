@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useCallback } from 'react'
+import { useMemo, useState, useCallback } from 'react'
 import { useForm, FormProvider, useWatch } from 'react-hook-form'
 import { standardSchemaResolver } from '@hookform/resolvers/standard-schema'
 import { toast } from 'sonner'
@@ -45,9 +45,7 @@ const BetSlipContent = ({
   const clearSlip = useBetSlipStore((s) => s.clearSlip)
   const removeSelection = useBetSlipStore((s) => s.removeSelection)
 
-  useEffect(() => {
-    if (selections.length < 2) setBetType(BET_TYPE_IDS.SINGLE)
-  }, [selections.length])
+  const derivedBetType = selections.length < 2 ? BET_TYPE_IDS.SINGLE : betType
 
   const stakeSchema = useMemo(
     () => createStakeSchema({ minStake, maxStake, currencySymbol }),
@@ -66,18 +64,18 @@ const BetSlipContent = ({
 
   const potentialReturn = useMemo(() => {
     if (stakeValue <= 0) return '0.00'
-    if (betType === BET_TYPE_IDS.SINGLE) {
+    if (derivedBetType === BET_TYPE_IDS.SINGLE) {
       return selections.reduce((acc, s) => acc + stakeValue * s.odds, 0).toFixed(2)
     }
     return (stakeValue * combinedOdds).toFixed(2)
-  }, [stakeValue, betType, selections, combinedOdds])
+  }, [stakeValue, derivedBetType, selections, combinedOdds])
 
   const totalStake = useMemo(() => {
     if (stakeValue <= 0) return '0.00'
-    return betType === BET_TYPE_IDS.SINGLE
+    return derivedBetType === BET_TYPE_IDS.SINGLE
       ? (stakeValue * selections.length).toFixed(2)
       : stakeValue.toFixed(2)
-  }, [stakeValue, betType, selections.length])
+  }, [stakeValue, derivedBetType, selections.length])
 
   const exceedsMaxPayout = useMemo(
     () => stakeValue > 0 && Number(potentialReturn) > maxPayout,
@@ -119,7 +117,7 @@ const BetSlipContent = ({
 
           <FormProvider {...form}>
             <div className="border-border space-y-3 border-t p-4">
-              {selections.length >= 2 && <BetTypesTab betType={betType} setBetType={setBetType} />}
+              {selections.length >= 2 && <BetTypesTab betType={derivedBetType} setBetType={setBetType} />}
 
               <BetSlipStakeForm
                 minStake={minStake}
@@ -128,7 +126,7 @@ const BetSlipContent = ({
               />
 
               <BetSlipSelectionDetails
-                betType={betType}
+                betType={derivedBetType}
                 combinedOdds={combinedOdds.toFixed(2)}
                 currencySymbol={currencySymbol}
                 potentialReturn={potentialReturn}
