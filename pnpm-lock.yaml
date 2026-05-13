@@ -87,9 +87,6 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.2.3(@types/react@19.2.14)
-      '@types/testing-library__jest-dom':
-        specifier: ^6.0.0
-        version: 6.0.0
       '@vitejs/plugin-react':
         specifier: ^6.0.1
         version: 6.0.1(vite@8.0.12(@types/node@20.19.40)(jiti@2.7.0))
@@ -1716,10 +1713,6 @@ packages:
 
   '@types/statuses@2.0.6':
     resolution: {integrity: sha512-xMAgYwceFhRA2zY+XbEA7mxYbA093wdiW8Vu6gZPGWy9cmOyU9XesH1tNcEWsKFd5Vzrqx5T3D38PWx1FIIXkA==}
-
-  '@types/testing-library__jest-dom@6.0.0':
-    resolution: {integrity: sha512-bnreXCgus6IIadyHNlN/oI5FfX4dWgvGhOPvpr7zzCYDGAPIfvyIoAozMBINmhmsVuqV0cncejF2y5KC7ScqOg==}
-    deprecated: This is a stub types definition. @testing-library/jest-dom provides its own type definitions, so you do not need this installed.
 
   '@types/validate-npm-package-name@4.0.2':
     resolution: {integrity: sha512-lrpDziQipxCEeK5kWxvljWYhUvOiB2A9izZd9B2AFarYAkqZshb4lPbRs7zKEic6eGtH8V/2qJW+dPp9OtF6bw==}
@@ -6062,10 +6055,6 @@ snapshots:
       '@types/node': 20.19.40
 
   '@types/statuses@2.0.6': {}
-
-  '@types/testing-library__jest-dom@6.0.0':
-    dependencies:
-      '@testing-library/jest-dom': 6.9.1
 
   '@types/validate-npm-package-name@4.0.2': {}
 
