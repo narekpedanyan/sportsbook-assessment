@@ -117,7 +117,9 @@ const BetSlipContent = ({
 
           <FormProvider {...form}>
             <div className="border-border space-y-3 border-t p-4">
-              {selections.length >= 2 && <BetTypesTab betType={derivedBetType} setBetType={setBetType} />}
+              {selections.length >= 2 && (
+                <BetTypesTab betType={derivedBetType} setBetType={setBetType} />
+              )}
 
               <BetSlipStakeForm
                 minStake={minStake}
