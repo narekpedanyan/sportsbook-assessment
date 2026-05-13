@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:mobile": "NEXT_PUBLIC_API_URL=http://192.168.5.78:3000 next dev -H 0.0.0.0",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

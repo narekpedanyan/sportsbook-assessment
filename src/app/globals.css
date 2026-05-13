@@ -119,6 +119,11 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+[data-slot='alert-dialog-overlay'],
+[data-slot='alert-dialog-content'] {
+  z-index: 110 !important;
+}
+
 @keyframes odds-shorten {
   0%,
   100% {

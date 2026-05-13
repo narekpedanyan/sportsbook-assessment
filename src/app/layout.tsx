@@ -13,7 +13,7 @@ import { ThemeProvider } from '@/providers/ThemeProvider'
 import { getAppConfig } from '@/lib/api/config'
 
 import type { ReactNode } from 'react'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import './globals.css'
 
@@ -25,6 +25,12 @@ const geistSans = Geist({
 export const metadata: Metadata = {
   title: 'Sportsbook',
   description: 'Live sports betting platform',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 }
 
 export default async function RootLayout({
