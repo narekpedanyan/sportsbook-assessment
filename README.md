@@ -26,6 +26,14 @@ A production-quality live sportsbook application built with Next.js App Router. 
 - **Responsible Gambling Banner** — dismissible, with live session timer
 - **Loading Skeletons** — pixel-matched skeletons for lobby and sport pages
 
+## Prerequisites
+
+- **Node.js** v18 or later
+- **pnpm** — if not installed, run:
+  ```bash
+  npm install -g pnpm
+  ```
+
 ## Getting Started
 
 ```bash
