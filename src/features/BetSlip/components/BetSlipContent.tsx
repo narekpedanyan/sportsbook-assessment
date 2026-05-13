@@ -138,7 +138,7 @@ const BetSlipContent = ({
 
               {exceedsMaxPayout && (
                 <MaxPayoutExceedsWarningMessage
-                  maxPayoutWithCurrency={`${currencySymbol}${maxPayout.toLocaleString()}`}
+                  maxPayoutWithCurrency={`${currencySymbol}${maxPayout.toLocaleString('en-US')}`}
                 />
               )}
 

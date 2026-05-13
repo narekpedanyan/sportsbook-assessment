@@ -19,7 +19,7 @@ export const createStakeSchema = ({ minStake, maxStake, currencySymbol }: StakeS
       )
       .refine(
         (v) => Number(v) <= maxStake,
-        `Maximum stake is ${currencySymbol}${maxStake.toLocaleString()}`,
+        `Maximum stake is ${currencySymbol}${maxStake.toLocaleString('en-US')}`,
       ),
   })
 
