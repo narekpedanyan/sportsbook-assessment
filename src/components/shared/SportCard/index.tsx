@@ -16,7 +16,7 @@ const SportCard = memo(({ sport }: SportCardProps) => {
   return (
     <Link href={`/sport/${slug}`}>
       <Card className="hover:border-primary hover:shadow-primary/10 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
-        <CardContent className="flex items-center gap-4 p-4">
+        <CardContent className="flex items-center gap-4 px-4 sm:p-4">
           <span className="bg-muted flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-2xl">
             {icon}
           </span>

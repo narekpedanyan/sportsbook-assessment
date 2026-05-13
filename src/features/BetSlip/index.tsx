@@ -65,7 +65,7 @@ const BetSlip = ({ config }: BetSlipProps) => {
           label={BET_SLIP_LABELS.betSlip}
         />
         {mobileOpened && (
-          <div className="border-border max-h-[65vh] overflow-y-auto border-t">
+          <div className="border-border h-[65vh] border-t">
             <BetSlipContent
               minStake={minStake}
               maxStake={maxStake}
