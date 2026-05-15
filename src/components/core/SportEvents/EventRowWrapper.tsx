@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useMemo, useCallback } from 'react'
+import { memo, useMemo, useCallback, useEffect } from 'react'
 import { useShallow } from 'zustand/react/shallow'
 
 import EventRow from '@/components/shared/EventRow'
@@ -19,6 +19,18 @@ const EventRowWrapper = memo(({ event }: EventRowWrapperProps) => {
   const eventName = `${event.homeTeam.name} vs ${event.awayTeam.name}`
 
   const selectedIds = useBetSlipStore(useShallow((s) => s.selections.map((sel) => sel.selectionId)))
+
+  useEffect(() => {
+    if (!mainMarket) return
+    const { selections, updateOdds } = useBetSlipStore.getState()
+    for (const sel of mainMarket.selections) {
+      const inSlip = selections.find((s) => s.selectionId === sel.id)
+      if (inSlip && inSlip.odds !== sel.odds) {
+        updateOdds(sel.id, sel.odds)
+      }
+    }
+  }, [mainMarket])
+
   const addSelection = useBetSlipStore((s) => s.addSelection)
   const removeSelection = useBetSlipStore((s) => s.removeSelection)
 
